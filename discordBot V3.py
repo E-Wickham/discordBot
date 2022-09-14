@@ -105,4 +105,4 @@ async def member(ctx: discord.Interaction):
     await ctx.response.send_message(member_list)
 
 
-@client.run()
+client.run('token')
