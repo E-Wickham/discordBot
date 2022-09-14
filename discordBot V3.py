@@ -1,4 +1,4 @@
-import discord
+import discord, asyncio
 from discord import app_commands
 from discord.ext import commands
 from discord.utils import get
@@ -12,20 +12,22 @@ MY_GUILD = discord.Object(id='BST GUILD ID')
 AUTOROLE = "New Friend"
 
 class BotClient(discord.Client):
+    ##Define variable to track if commands are synced to Discord Server
+    synced = False
+
     def __init__(self):
         ##Define Intents, might change once I have dev potal access to bot
         super().__init__(intents=discord.Intents.default()) 
-        ##Define variable to track if commands are synced to Discord
-        synced = False
         ##Define the Command tree for the client
         self.tree = app_commands.CommandTree(self)
 
-    async def on_ready(self):
+    async def setup_hook(self):
         await self.wait_until_ready()
         ##check if commands have been synced, sync if they havent, ignore otherwise.
         ##on_ready() can be called more than once, so we used synced variable to avoid spam
         if not self.synced:
-            await tree.sync(guild=discord.Object(MY_GUILD))
+            self.tree.copy_global_to(guild = MY_GUILD)
+            await self.tree.sync(guild=discord.Object(MY_GUILD))
             self.synced = True
         print("Bot Running")
 
@@ -84,10 +86,16 @@ async def mojo(ctx: discord.Interaction):
     await ctx.response.send_message(f"Mojo levels are good, vibes as well. I'll be monitoring the situation. Thanks for asking {user}")
 
 ##New NatPo Article Headline
+##Also used as an example of a deferred command
+##Deferred commands are needed if it will take more than 3 seconds for the Bot to respond
+##To complete the request sent from Discord.
+##While Generating a column does not take even close to 3 seconds, 
+# its the longest running thing we got so its the guinea pig lol 
 @client.tree.command()
 async def newColumn(ctx: discord.Interaction):
-    newHead = GenerateColumn()
-    await ctx.response.send_message(newHead)
+    await ctx.response.defer() # First send the Defer message
+    newHead = GenerateColumn() # Process the request
+    await ctx.followup.send(newHead) # send the response back using the followup method
 
 @client.tree.command()
 async def member(ctx: discord.Interaction):
@@ -95,6 +103,8 @@ async def member(ctx: discord.Interaction):
     for member in ctx.message.server.members:
         member_list += member.name
     await ctx.response.send_message(member_list)
+
+@client.tree.command()
 
 
 
