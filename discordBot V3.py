@@ -104,10 +104,5 @@ async def member(ctx: discord.Interaction):
         member_list += member.name
     await ctx.response.send_message(member_list)
 
-@client.tree.command()
 
-
-
-
-
-
+@client.run()

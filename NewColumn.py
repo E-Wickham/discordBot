@@ -1,7 +1,74 @@
-import discord 
-from discord.ext import commands
-from discord.utils import get
-from Variables import *
+listEnem = ["Trudeau", 
+    "Greta Thunberg", 
+    "Joseph Stalin", 
+    "China",
+    "Antifa",
+    "The Woke Mob",
+    "The Woke Left",
+    "George Soros",
+    "The Deficit",
+    "Homeless People",
+    "BLM",
+    "My Niece doing a Sociology Undergrad"]
+
+listFren = ["Ayn Rand", 
+    "Elon Musk", 
+    "Bill Gates", 
+    "The Wolf of Wall Street",
+    "Some Speculative Real Estate Investor",
+    "A Mining Executive Named Kyle",
+    "David Frum",
+    "Gad Saad",
+    "Jordan Peterson's Corpse",
+    "My Racist Uncle",
+    "The Macdonald Laurier Institute"]
+
+listBad = ["Free Market",       
+    "Capitalism",
+    "Statues of Assholes",
+    "Billionaires",
+    "NATO",
+    "bombing campaigns in countries that aren't predominantly white",
+    "Budget Cuts",
+    "Tax Breaks for the Wealthy"]
+
+listGood = ["Dental Care",
+    "working class solidarity",
+    "solar panels",
+    "public transit",
+    "Socialism",
+    "Defunding the Police",
+    "prison abolition",
+    "Stopping Climate Change",
+    "Fair Taxes",
+    "the Welfare State",
+    "not having wars",
+    "anti-discrimination laws",
+    "Trans rights",
+    "consequences for being awful"]
+
+listHack = ["Barbara Kay",
+    "Rex Murphy",
+    "Terry Glavin",
+    "Lorne Gunter",
+    "John Ivison",
+    "Tristin Hopper",
+    "Kelly Mcparland",
+    "Jessie Kline",
+    "Rupa Subramunya",
+    "A very dead Christie Blatchford"]
+
+listDmst = ["going to the gas station",
+    "using a self-checkout lane",
+    "washing the dishes",
+    "mowing the lawn",
+    "taking public transit",
+    "gardening",
+    "watering your grass",
+    "fixing a boken fence",
+    "cleaning the bathroom",
+    "unclogging the drain"]
+
 
 def GenerateColumn():
     import random
